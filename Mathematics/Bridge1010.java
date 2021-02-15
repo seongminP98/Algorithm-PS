@@ -15,9 +15,6 @@ public class Bridge1010 {
             System.out.println(combination(m,n));
         }
 
-
-
-
     }
     static int combination(int n, int r){ //조합 
         if(bridge[n][r]>0){
@@ -28,6 +25,6 @@ public class Bridge1010 {
             return bridge[n][r]=1;
         }
 
-        return combination(n-1, r-1) + combination(n-1, r);
+        return bridge[n][r] = combination(n-1, r-1) + combination(n-1, r);
     }
 }
