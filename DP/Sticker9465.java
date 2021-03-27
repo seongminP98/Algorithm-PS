@@ -21,7 +21,7 @@ public class Sticker9465 {
             dp[1][1] = arr[1][1];
             for(int i=2; i<n+1; i++){
                 dp[0][i] = Math.max(dp[1][i-1],dp[1][i-2])+arr[0][i]; //1행i열 스티커를 때려면 그 스티커의 값과 이 스티커를 땔수있는 경우인 2행 i-1열 i-2열 중 큰 값을 더한다.
-                dp[1][i] = Math.max(dp[0][i-1],dp[0][i-2])+arr[1][i];
+                dp[1][i] = Math.max(dp[0][i-1],dp[0][i-2])+arr[1][i];       //1행 i-2열 스티커를 때두 되는데 이건 2행 i-1열에서 이미 고려했다.
             }
             System.out.println(Math.max(dp[0][n],dp[1][n]));
         }
