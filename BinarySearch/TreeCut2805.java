@@ -26,7 +26,7 @@ public class TreeCut2805 {
                 if(tree[i]>middle)
                     sum+=tree[i]-middle;
             }
-            if(sum==M){
+            if(sum==M){  //없어도 통과됨.
                 max = middle;
                 break;
             }
