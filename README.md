@@ -1,2 +1,2 @@
-# Baekjoon-Algorithm
-백준 알고리즘 코딩 + 프로그래머스
+# Algorithm Problem Solving
+백준 + 프로그래머스
