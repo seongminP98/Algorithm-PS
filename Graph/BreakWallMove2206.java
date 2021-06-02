@@ -56,13 +56,13 @@ public class BreakWallMove2206 {
                 int nx = x+dx[i];
                 int ny = y+dy[i];
 
-                if(nx>=0 && nx<N && ny>=0 && ny<M && visit[nx][ny]>bk){
+                if(nx>=0 && nx<N && ny>=0 && ny<M && visit[nx][ny]>bk){ //범위에 맞고 방문 안했으면
                     if(arr[nx][ny]==0){//벽이 아닐 때
-                        visit[nx][ny] = bk;
+                        visit[nx][ny] = bk; //==0
                         q.add(new NodeB(nx,ny,dis+1,bk));
                     } else{//벽일 때
                         if(bk==0){ //지금까지 벽을 안부셨으면
-                            visit[nx][ny] = bk+1;
+                            visit[nx][ny] = bk+1; //==1
                             q.add(new NodeB(nx,ny,dis+1,bk+1));
                         }
                     }
