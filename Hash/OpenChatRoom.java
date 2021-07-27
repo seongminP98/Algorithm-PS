@@ -40,3 +40,38 @@ public class OpenChatRoom {
 
     }
 }
+
+/*
+import java.util.HashMap;
+import java.util.Map;
+class Solution {
+    public String[] solution(String[] record) {
+        Map<String,String> users = new HashMap<>();
+        int len = 0;
+        for (String s : record) {
+            if(!s.split(" ")[0].equals("Leave")){
+                String id = s.split(" ")[1];
+                String nick = s.split(" ")[2];
+                users.put(id,nick);
+            }
+            if(!s.split(" ")[0].equals("Change"))
+                len++;
+        }
+
+        String[] answer = new String[len];
+
+        int j=0;
+        for (int i=0; i< record.length; i++) {
+            String behavior = record[i].split(" ")[0];
+            String nick = users.get(record[i].split(" ")[1]);
+            if(behavior.equals("Enter")){
+                answer[j++] = nick+"님이 들어왔습니다.";
+            } else if(behavior.equals("Leave")) {
+                answer[j++] = nick+"님이 나갔습니다.";
+            }
+        }
+
+        return answer;
+    }
+}
+*/
