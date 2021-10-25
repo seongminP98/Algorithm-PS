@@ -50,10 +50,10 @@ public class NominatingCandidate1713 {
         }
 
         @Override
-        public int compareTo(PhotoFrame o) {
-            if (this.votes == o.votes) {
-                return this.time - o.time;
-            } else if (this.votes < o.votes) {
+        public int compareTo(PhotoFrame o) { //return 값이 양수이면 순서바꿈. 음수거나 0이면 자리 바꾸지않음.
+            if (this.votes == o.votes) { //투표가 같으면
+                return this.time - o.time; //오래된걸 앞으로.
+            } else if (this.votes < o.votes) { //투표 수 오름차순 정렬. 
                 return -1;
             } else
                 return 1;
