@@ -31,3 +31,7 @@ public class MergeFiles11066 {
         }
     }
 }
+/**
+ * d[i][j] : i~j까지 합치는데 최소값
+ * d[i][k] + d[k+1][j] => 이 두개를 합치려면 sum[j] - sum[from-1]을 더해줘야 함.
+ */
