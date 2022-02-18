@@ -60,16 +60,16 @@ public class Rectangle2527 {
     }
 
     static boolean B(Rectangle r1, Rectangle r2) { // 완전히 분리된 경우는 D에서 걸러짐.
-        if (r1.x == r2.p && r1.q != r2.y) {
+        if (r1.x == r2.p) {
             return true;
         }
-        if (r1.p == r2.x && r1.q != r2.y) {
+        if (r1.p == r2.x) {
             return true;
         }
-        if (r1.y == r2.q && r1.p != r2.x) {
+        if (r1.y == r2.q) {
             return true;
         }
-        if (r1.q == r2.y && r1.x != r2.p) {
+        if (r1.q == r2.y) {
             return true;
         }
         return false;
