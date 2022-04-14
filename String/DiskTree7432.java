@@ -13,7 +13,7 @@ public class DiskTree7432 {
 
         for (int i = 0; i < N; i++) {
             String[] str = br.readLine().split("\\\\");
-            insert(str, rootNode);
+            insert(str, rootNode); // 루트부터 시작
         }
 
         print(rootNode, 0);
@@ -22,29 +22,22 @@ public class DiskTree7432 {
 
     static void insert(String[] str, Node node) {
         for (String s : str) {
-            if (node.childNode.containsKey(s)) {
-                node = node.childNode.get(s);
-                node.end = false;
-            } else {
-                node.childNode.put(s, new Node());
-                node = node.childNode.get(s);
-                node.end = true;
+            if (!node.childNode.containsKey(s)) { // 내 자식에 포함되어 있지 않으면
+                node.childNode.put(s, new Node()); // 자식으로 추가함.
             }
+            node = node.childNode.get(s); // 자식으로 넘어감.
         }
     }
 
     static void print(Node node, int cnt) {
-
-        for (String key : node.childNode.keySet()) {
-            sb.append(" ".repeat(Math.max(0, cnt)));
+        for (String key : node.childNode.keySet()) { // 자식의 keySet 을 돌면서
+            sb.append(" ".repeat(Math.max(0, cnt))); // cnt 만큼 앞에 공백 추가
             sb.append(key).append('\n');
             print(node.childNode.get(key), cnt + 1);
         }
-
     }
 
     static class Node {
         Map<String, Node> childNode = new TreeMap<>();
-        boolean end;
     }
 }
