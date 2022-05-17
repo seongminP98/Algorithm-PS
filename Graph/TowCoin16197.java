@@ -34,8 +34,8 @@ public class TowCoin16197 {
     }
 
     static void bfs(Queue<Node> q1, Queue<Node> q2) {
-        Set<NodeVisit> visited = new HashSet<>();
-        visited.add(new NodeVisit(q1.peek().x, q1.peek().y, q2.peek().x, q2.peek().y));
+        boolean[][][][] visited = new boolean[N][M][N][M];
+        visited[q1.peek().x][q1.peek().y][q2.peek().x][q2.peek().y] = true;
         while (!q1.isEmpty() && !q2.isEmpty()) {
             Node c1 = q1.poll();
             Node c2 = q2.poll();
@@ -64,8 +64,8 @@ public class TowCoin16197 {
                         check2 = true;
                     }
                     if (check1 & check2) continue;
-                    if (!visited.contains(new NodeVisit(nx1, ny1, nx2, ny2)) && c1.cnt < 10) {
-                        visited.add(new NodeVisit(nx1, ny1, nx2, ny2));
+                    if (!visited[nx1][ny1][nx2][ny2] && c1.cnt < 10) {
+                        visited[nx1][ny1][nx2][ny2] = true;
                         q1.add(new Node(nx1, ny1, c1.cnt + 1));
                         q2.add(new Node(nx2, ny2, c2.cnt + 1));
                     }
@@ -76,44 +76,6 @@ public class TowCoin16197 {
 
     static boolean isOut(int x, int y) {
         return x < 0 || y < 0 || x >= N || y >= M;
-    }
-
-    static class NodeVisit {
-        int x1, y1, x2, y2;
-
-        public NodeVisit(int x1, int y1, int x2, int y2) {
-            this.x1 = x1;
-            this.y1 = y1;
-            this.x2 = x2;
-            this.y2 = y2;
-        }
-
-        @Override
-        public String toString() {
-            return "NodeVisit{" +
-                    "x1=" + x1 +
-                    ", y1=" + y1 +
-                    ", x2=" + x2 +
-                    ", y2=" + y2 +
-                    '}';
-        }
-
-        @Override
-        public boolean equals(Object o) {
-
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            NodeVisit nodeVisit = (NodeVisit) o;
-            return x1 == nodeVisit.x1 &&
-                    y1 == nodeVisit.y1 &&
-                    x2 == nodeVisit.x2 &&
-                    y2 == nodeVisit.y2;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(x1, y1, x2, y2);
-        }
     }
 
     static class Node {
