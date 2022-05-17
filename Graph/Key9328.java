@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
 
+// key를 비트마스킹으로 풀었지만, 열쇠를 얻을 때마다 visited를 초기화해도 된다고 함..
 public class Key9328 {
     static int h, w;
     static char[][] arr;
