@@ -16,13 +16,13 @@ public class Key9328 {
             h = Integer.parseInt(st.nextToken());
             w = Integer.parseInt(st.nextToken());
             arr = new char[h + 2][w + 2];
-            for(int i=0; i<h+2; i++) {
-                Arrays.fill(arr[i],'.');
+            for (int i = 0; i < h + 2; i++) {
+                Arrays.fill(arr[i], '.');
             }
             for (int i = 1; i <= h; i++) {
                 String s = br.readLine();
                 for (int j = 1; j <= w; j++) {
-                    arr[i][j] = s.charAt(j-1);
+                    arr[i][j] = s.charAt(j - 1);
                 }
             }
             int key = 0;
