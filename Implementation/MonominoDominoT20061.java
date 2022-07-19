@@ -5,6 +5,7 @@ import java.util.StringTokenizer;
 public class MonominoDominoT20061 {
     static boolean[][] arr;
     static int answer = 0;
+    static int tileCount = 0;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -19,12 +20,49 @@ public class MonominoDominoT20061 {
             // t == 2 : (x, y), (x, y+1)
             // t == 3 : (x, y), (x+1, y)
             solution(t, x, y);
-            printArr();
-            System.out.println("========================");
             delete();
+            special();
         }
-        System.out.println("마지막");
 
+        for (boolean[] booleans : arr) {
+            for (boolean aBoolean : booleans) {
+                if (aBoolean) tileCount++;
+            }
+        }
+        System.out.println(answer);
+        System.out.println(tileCount);
+    }
+
+    private static void special() {
+        int greenCnt = 0;
+        int blueCnt = 0;
+        for (int i = 4; i <= 5; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (arr[i][j]) {
+                    greenCnt++;
+                    break;
+                }
+            }
+            for (int j = 0; j < 4; j++) {
+                if (arr[j][i]) {
+                    blueCnt++;
+                    break;
+                }
+            }
+        }
+
+        while (greenCnt-- > 0) {
+            for (int j = 0; j < 4; j++) {
+                arr[9][j] = false;
+            }
+            moveGreen(9, 4);
+        }
+        while (blueCnt-- > 0) {
+            for (int i = 0; i < 4; i++) {
+                arr[i][9] = false;
+            }
+            moveBlue(9);
+        }
 
     }
 
@@ -32,6 +70,7 @@ public class MonominoDominoT20061 {
         for (boolean[] booleans : arr) {
             for (boolean aBoolean : booleans) {
                 if (aBoolean) {
+
                     System.out.print("o");
                 } else {
                     System.out.print("x");
@@ -40,7 +79,8 @@ public class MonominoDominoT20061 {
             System.out.println();
         }
     }
-    private static void moveBlue(int index) {
+
+    private static void moveBlue(int index) { // 6 6
         for (int j = index - 1; j >= 4; j--) {
             boolean[] temp = new boolean[4];
             for (int i = 0; i < 4; i++) {
@@ -55,7 +95,7 @@ public class MonominoDominoT20061 {
         }
     }
 
-    private static void moveGreen(int index) {
+    private static void moveGreen(int index, int t) {
         for (int i = index - 1; i >= 4; i--) {
             boolean[] temp = new boolean[4];
             for (int j = 0; j < 4; j++) {
@@ -80,10 +120,12 @@ public class MonominoDominoT20061 {
                 }
             }
             if (flag) { // i행 삭제
+                answer++;
                 for (int j = 0; j < 4; j++) {
                     arr[i][j] = false;
                 }
-                moveGreen(i);
+                moveGreen(i, 6);
+                i++;
             }
         }
         for (int i = 9; i >= 6; i--) {
@@ -95,10 +137,12 @@ public class MonominoDominoT20061 {
                 }
             }
             if (flag) {
+                answer++;
                 for (int j = 0; j < 4; j++) {
                     arr[j][i] = false;
                 }
                 moveBlue(i);
+                i++;
             }
         }
     }
@@ -124,7 +168,8 @@ public class MonominoDominoT20061 {
             }
             arr[x][y + cnt] = true;
 
-            arr[x][y] = false; // 빨간색
+            // 빨간색
+            arr[x][y] = false;
         } else if (t == 2) { //(x, y), (x, y+1)
             int cnt = 0;
             for (int i = x + 1; i < 10; i++) {
