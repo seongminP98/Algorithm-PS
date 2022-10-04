@@ -7,11 +7,7 @@ public class NumberGame {
     public static void main(String[] args) {
         int[] A = {5, 1, 3, 7};
         int[] B = {2, 2, 6, 8};
-//        long milliseconds = 1664952246620L;
-        long milliseconds = 1664954229937L;
-        LocalDate date =
-                Instant.ofEpochMilli(milliseconds).atZone(ZoneId.systemDefault()).toLocalDate();
-        System.out.println("date = " + date);
+
     }
 
     private static int solution(int[] A, int[] B) {
