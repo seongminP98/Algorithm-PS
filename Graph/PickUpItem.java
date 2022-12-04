@@ -2,20 +2,12 @@ import java.util.*;
 
 public class PickUpItem {
     static boolean[][] arr;
-//    static int[] dx = {0, 0, 1, -1};
-//    static int[] dy = {1, -1, 0, 0};
-//    static int[] checkX = {1, 1, -1, -1};
-//    static int[] checkY = {1, -1, 1, -1};
-
-    // 상하좌우 대각선
     static int[] dx = {0, 0, 1, -1, 1, 1, -1, -1};
     static int[] dy = {1, -1, 0, 0, 1, -1, 1, -1};
     static int answer = Integer.MAX_VALUE;
 
     public static void main(String[] args) {
         int[][] rectangle = {{1, 1, 7, 4}, {3, 2, 5, 5}, {4, 3, 6, 9}, {2, 6, 8, 8}};
-//        int[][] rectangle = {{2, 2, 5, 5}, {1, 3, 6, 4}, {3, 1, 4, 6}};
-//        int[][] rectangle = {{1,1,8,4},{2,2,4,9},{3,6,9,8},{6,3,7,7}};
         int characterX = 1;
         int characterY = 3;
         int itemX = 7;
@@ -70,26 +62,12 @@ public class PickUpItem {
             if (c.equals(end)) {
                 answer = Math.min(answer, c.cnt / 2);
             }
-            boolean flag = false;
             for (int i = 0; i < 4; i++) {
                 int nx = c.x + dx[i];
                 int ny = c.y + dy[i];
                 if (nx > 0 && nx <= 100 && ny > 0 && ny <= 100 && !visited[nx][ny] && arr[nx][ny]) {
-                    flag = true;
                     visited[nx][ny] = true;
                     q.add(new Node(nx, ny, c.cnt + 1));
-                }
-            }
-
-            // 상하좌우로 못갔으면 대각선선
-           if (!flag) {
-                for (int i = 4; i < 8; i++) {
-                    int nx = c.x + dx[i];
-                    int ny = c.y + dy[i];
-                    if (nx > 0 && nx <= 100 && ny > 0 && ny <= 100 && !visited[nx][ny] && arr[nx][ny]) {
-                        visited[nx][ny] = true;
-                        q.add(new Node(nx, ny, c.cnt + 2));
-                    }
                 }
             }
         }
